@@ -17,7 +17,7 @@ RUN apt-get update && \
     -y --no-install-recommends
 
 
-RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-old-php-ext-install pdo pdo_mysql
 
 RUN pecl install -o -f xdebug-3.1.3 \
 #     && rm -rf /tmp/pear
