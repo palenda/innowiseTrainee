@@ -9,11 +9,10 @@ abstract class Database
     public static function getConnection(): PDO
     {
         $config = [
-            'host' => '10.147.17.129:6033',
-//            'host' => '192.168.0.102:6033',
+            'host' => 'db:3306',
             'name' => 'php_mvc',
-            'user' => 'php_mvc',
-            'password' => 'php_mvc',
+            'user' => 'root',
+            'password' => 'root',
         ];
 
         $db = new PDO('mysql:host='.$config['host'].';dbname='.$config['name'], $config['user'], $config['password']);

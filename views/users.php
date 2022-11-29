@@ -1,7 +1,8 @@
 <?php include_once "layouts/header.php" ?>
 <?php include_once "layouts/footer.php" ?>
 <h1>Database:</h1>
-<table class="table table-striped table-hover">
+<table class="table table-bordered table-hover">
+    <div class="table-responsive-sm">
     <thead>
     <tr>
         <th scope="col">ID</th>
@@ -32,6 +33,7 @@
             </tr>
         <?php endforeach; ?>
     </tbody>
+    </div>
 </table>
 </form>
 
