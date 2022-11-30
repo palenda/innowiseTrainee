@@ -10,10 +10,15 @@ class UserModel extends Model
 {
     public function index(): array
     {
+        return Database::limitSelect('users');
+    }
+
+    public function count(): int
+    {
         return Database::select('users');
     }
 
-    public function show($id)
+    public function show($id): array
     {
         return Database::selectById('users', $id);
     }

@@ -1,5 +1,9 @@
 <?php include_once "layouts/header.php" ?>
 <?php include_once "layouts/footer.php" ?>
+<?php
+$page = $_GET['page'];
+$pages = ceil($params['count'] / 10);
+?>
 <h1>Database:</h1>
 <table class="table table-bordered table-hover">
     <div class="table-responsive-sm">
@@ -14,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-        <?php foreach ($params['users'] as $user): ?>
+        <?php foreach ($params['users'] as $user):?>
                 <td><?= $user['id']; ?></td>
                 <td><?= $user['name']; ?></td>
                 <td><?= $user['email']; ?></td>
@@ -31,9 +35,20 @@
                     </a>
                 </td>
             </tr>
-        <?php endforeach; ?>
+        <?endforeach;?>
     </tbody>
     </div>
 </table>
+<div class="container my-5">
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a href="?page=<?=$page - 1;?>" class="page-link">&laquo;</a></li>
+            <?php for ($i = 1; $i <= $pages; $i++): ?>
+            <li class="page-item"><a href="?page=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
+            <?php endfor;?>
+            <li class="page-item"><a href="?page=<?=$page + 1;?>" class="page-link">&raquo;</a></li>
+        </ul>
+    </nav>
+</div>
 </form>
 

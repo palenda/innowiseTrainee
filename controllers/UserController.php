@@ -12,7 +12,9 @@ class UserController extends Controller
     {
         $userModel = new UserModel();
         $users = $userModel->index();
+        $count = $userModel->count();
         $this->params['users'] = $users;
+        $this->params['count'] = $count;
         return $this->returnView('users', $this->params);
     }
 

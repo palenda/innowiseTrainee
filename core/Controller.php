@@ -8,7 +8,8 @@ class Controller
     public Model $model;
     public array $params = array();
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->model = new Model();
         $this->view = new View();
     }

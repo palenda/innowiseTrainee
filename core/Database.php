@@ -1,28 +1,34 @@
 <?php
 
 namespace app\core;
-
 use PDO;
 
 abstract class Database
 {
     public static function getConnection(): PDO
     {
-        $config = [
-            'host' => 'db:3306',
-            'name' => 'php_mvc',
-            'user' => 'root',
-            'password' => 'root',
-        ];
-
-        $db = new PDO('mysql:host='.$config['host'].';dbname='.$config['name'], $config['user'], $config['password']);
-        $db->exec("set names utf8");
-        return $db;
+        return DatabaseConnection::getInstance();
     }
 
-    public static function select($table): array
+    public static function select($table)
     {
         $sql = "SELECT * FROM $table";
+        $db = self::getConnection();
+        $query = $db->prepare($sql);
+        $params = array();
+        $query->execute();
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $params[$row['id']] = $row;
+        }
+        return count($params);
+    }
+
+    public static function limitSelect($table): array
+    {
+        $page = $_GET['page'] ?? 1;
+        $limit = 10;
+        $start = ($page - 1) * $limit;
+        $sql = "SELECT * FROM $table LIMIT $start, $limit";
         $db = self::getConnection();
         $query = $db->prepare($sql);
         $params = array();
